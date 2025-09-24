@@ -1,0 +1,35 @@
+---
+id: 0
+name: Testnet deployment
+network: testnet
+stacks-node: "https://api.testnet.hiro.so"
+bitcoin-node: "http://blockstack:blockstacksystem@bitcoind.testnet.stacks.co:18332"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - contract-publish:
+            contract-name: sip-010-trait
+            expected-sender: ST3W3XEFCN8Q9BN3KK2B8CY5PP9DX6HSSMAESKVGA
+            cost: 7080
+            path: contracts/traits/sip-010-trait.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: mock-token
+            expected-sender: ST3W3XEFCN8Q9BN3KK2B8CY5PP9DX6HSSMAESKVGA
+            cost: 17050
+            path: contracts/tokens/mock-token.clar
+            anchor-block-only: true
+            clarity-version: 2
+      epoch: "2.1"
+    - id: 1
+      transactions:
+        - contract-publish:
+            contract-name: pay_role
+            expected-sender: ST3W3XEFCN8Q9BN3KK2B8CY5PP9DX6HSSMAESKVGA
+            cost: 185640
+            path: contracts/pay_role.clar
+            anchor-block-only: true
+            clarity-version: 3
+      epoch: "3.1"
