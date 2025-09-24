@@ -1,0 +1,54 @@
+# Decentralized Payroll System - Testnet Deployment Plan
+
+network: testnet
+contracts:
+  - name: sip-010-trait
+    path: contracts/traits/sip-010-trait.clar
+    deploy: true
+    clarity_version: 2
+    epoch: 2.1
+
+  - name: pay_role
+    path: contracts/pay_role.clar
+    deploy: true
+    clarity_version: 3
+    epoch: 3.1
+    dependencies:
+      - sip-010-trait
+
+  - name: mock-token
+    path: contracts/tokens/mock-token.clar
+    deploy: true
+    clarity_version: 2
+    epoch: 2.1
+    dependencies:
+      - sip-010-trait
+
+deployment_order:
+  - sip-010-trait
+  - mock-token
+  - pay_role
+# Post-deployment setup
+post_deploy:
+  - initialize_company:
+      contract: pay_role
+      function: initialize-company
+      args:
+        - "Test Company Inc"
+        - 12345
+      description: "Initialize the company with name and ID"
+
+  - add_supported_token:
+      contract: pay_role
+      function: add-supported-token
+      args:
+        - "ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.mock-token"
+      description: "Add the mock token as supported payment token"
+
+  - set_admin_roles:
+      contract: pay_role
+      function: set-user-role
+      args:
+        - "YOUR_TESTNET_ADDRESS_HERE"
+        - 1 # admin role
+      description: "Set admin role for deployment wallet"

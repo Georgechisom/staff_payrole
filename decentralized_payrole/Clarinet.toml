@@ -5,10 +5,22 @@ authors = []
 telemetry = true
 cache_dir = './.cache'
 requirements = []
+
 [contracts.pay_role]
 path = 'contracts/pay_role.clar'
 clarity_version = 3
 epoch = 3.1
+
+[contracts.mock-token]
+path = 'contracts/tokens/mock-token.clar'
+clarity_version = 2
+epoch = 2.1
+
+[contracts.sip-010-trait]
+path = 'contracts/traits/sip-010-trait.clar'
+clarity_version = 2
+epoch = 2.1
+
 [repl.analysis]
 passes = ['check_checker']
 
