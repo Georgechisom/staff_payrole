@@ -1,0 +1,11 @@
+- [x] Update imports in WalletProvider.tsx: add AppConfig, UserSession, showConnect; remove connect, disconnect, isConnected, request
+- [x] Create appConfig and userSession instances
+- [x] Update useEffect to check userSession.isUserSignedIn() and handle pending sign in
+- [x] Update connectWallet to use showConnect with userSession
+- [x] Remove network object and related code
+- [x] Update handleConnection to accept userData instead of addresses
+- [x] Update processAddressInfo to take address and publicKey directly
+- [x] Update disconnectWallet to use userSession.signUserOut()
+- [x] Remove the interval check in useEffect
+- [x] Remove unused AddressInfo interface
+- [ ] Test wallet connection
